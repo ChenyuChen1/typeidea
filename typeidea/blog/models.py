@@ -19,8 +19,12 @@ class Category(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="作者")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = verbose_name_plural = '分类'
+
 
 
 class Tag(models.Model):
@@ -35,6 +39,9 @@ class Tag(models.Model):
                                          choices=STATUS_ITEMS, verbose_name="状态")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="作者")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = verbose_name_plural = '标签'
@@ -57,6 +64,9 @@ class Post(models.Model):
     content = models.TextField(verbose_name="正文", help_text="正文必须采用MarkDown格式")
     status = models.PositiveIntegerField(verbose_name="状态", default=STATUS_NORMAL, choices=STATUS_ITEMS)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = verbose_name_plural = "文章"
